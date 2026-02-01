@@ -4,16 +4,18 @@ import { Canvas } from '@react-three/fiber';
 import { Ground } from './components/Ground';
 import { Player } from './components/Player';
 import { FPV } from './components/FPV';
+import { Cubes } from './components/Cubes';
 
 function App() {
   return (
     <>
       <Canvas>
         <Sky sunPosition={[100, 100, 20]} />
-        <ambientLight intensity={1} />
+        <ambientLight intensity={1.7} />
         <FPV />
         <Physics>
           <Player />
+          <Cubes />
           <Ground />
         </Physics>
       </Canvas>

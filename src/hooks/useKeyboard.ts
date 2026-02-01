@@ -1,6 +1,16 @@
 import { useCallback, useEffect, useState } from 'react';
+export type Texture = 'dirt' | 'grass' | 'glass' | 'wood' | 'log';
+
+export type Actions =
+  | 'moveForward'
+  | 'moveBackward'
+  | 'moveLeft'
+  | 'moveRight'
+  | 'jump'
+  | Texture;
+
 const actionByKey = (key: string) => {
-  const keyActionMap: Record<string, string> = {
+  const keyActionMap: Record<string, Actions> = {
     KeyW: 'moveForward',
     KeyS: 'moveBackward',
     KeyA: 'moveLeft',
