@@ -2,6 +2,11 @@ import { nanoid } from 'nanoid';
 import type { Texture } from '../hooks/useKeyboard';
 import { create } from 'zustand';
 
+const getLocalStorage = (key: string) =>
+  JSON.parse(window.localStorage.getItem(key) ?? '[]');
+const setLocalStorage = (key: string, value: Cube[]) =>
+  window.localStorage.setItem(key, JSON.stringify(value));
+
 export type Cube = {
   key: string;
   position: [number, number, number];
@@ -20,18 +25,7 @@ export type StoreState = {
 
 export const useStore = create<StoreState>((set) => ({
   texture: 'dirt',
-  cubes: [
-    {
-      key: nanoid(),
-      position: [1, 1, 1],
-      texture: 'dirt'
-    },
-    {
-      key: nanoid(),
-      position: [2, 1, 1],
-      texture: 'log'
-    }
-  ],
+  cubes: getLocalStorage('cubes') || [],
   addCube: (x, y, z) =>
     set((state) => ({
       cubes: [
@@ -44,6 +38,13 @@ export const useStore = create<StoreState>((set) => ({
       cubes: state.cubes.filter((cube) => cube.key !== id)
     })),
   setTexture: (texture) => set(() => ({ texture })),
-  saveWorld: () => {},
-  resetWorld: () => {}
+  saveWorld: () => {
+    set((state) => {
+      setLocalStorage('cubes', state.cubes);
+      return {};
+    });
+  },
+  resetWorld: () => {
+    set(() => ({ cubes: [] }));
+  }
 }));

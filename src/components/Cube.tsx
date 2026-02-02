@@ -1,4 +1,4 @@
-import type { FC } from 'react';
+import { useState, type FC } from 'react';
 import { useStore, type Cube as CubeType } from '../hooks/useStore';
 import { useBox } from '@react-three/cannon';
 import * as textures from '../assets/images/textures';
@@ -9,6 +9,7 @@ export const Cube: FC<CubeType & { id: CubeType['key'] }> = ({
   texture,
   id
 }) => {
+  const [isHovered, setIsHovered] = useState(false);
   const [ref] = useBox(() => ({
     type: 'Static',
     position
@@ -22,6 +23,14 @@ export const Cube: FC<CubeType & { id: CubeType['key'] }> = ({
 
   return (
     <mesh
+      onPointerMove={(e) => {
+        e.stopPropagation();
+        setIsHovered(true);
+      }}
+      onPointerOut={(e) => {
+        e.stopPropagation();
+        setIsHovered(false);
+      }}
       onClick={(e) => {
         e.stopPropagation();
         const clickedFace = Math.floor(e.faceIndex! / 2);
@@ -45,7 +54,13 @@ export const Cube: FC<CubeType & { id: CubeType['key'] }> = ({
       ref={ref}
     >
       <boxGeometry attach="geometry" />
-      <meshStandardMaterial attach="material" map={actionTexture} />
+      <meshStandardMaterial
+        color={isHovered ? 'gray' : 'white'}
+        attach="material"
+        transparent={true}
+        opacity={texture === 'glass' ? 0.6 : 1}
+        map={actionTexture}
+      />
     </mesh>
   );
 };
