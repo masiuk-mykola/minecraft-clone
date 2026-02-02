@@ -9,7 +9,6 @@ export const Cube: FC<CubeType & { id: CubeType['key'] }> = ({
   texture,
   id
 }) => {
-  console.log('key', id);
   const [ref] = useBox(() => ({
     type: 'Static',
     position

@@ -1,5 +1,12 @@
 import { useCallback, useEffect, useState } from 'react';
 export type Texture = 'dirt' | 'grass' | 'glass' | 'wood' | 'log';
+export const textures: Record<string, Texture> = {
+  dirt: 'dirt',
+  grass: 'grass',
+  glass: 'glass',
+  wood: 'wood',
+  log: 'log'
+};
 
 export type Actions =
   | 'moveForward'
@@ -31,11 +38,11 @@ const keys = {
   moveLeft: false,
   moveRight: false,
   jump: false,
-  texture1: false,
-  texture2: false,
-  texture3: false,
-  texture4: false,
-  texture5: false
+  dirt: false,
+  grass: false,
+  glass: false,
+  wood: false,
+  log: false
 };
 
 export const useKeyboard = () => {
