@@ -23,12 +23,12 @@ export const useStore = create<StoreState>((set) => ({
   cubes: [
     {
       key: nanoid(),
-      position: [1, 0.5, 1],
+      position: [1, 1, 1],
       texture: 'dirt'
     },
     {
       key: nanoid(),
-      position: [2, 0.5, 1],
+      position: [2, 1, 1],
       texture: 'log'
     }
   ],

@@ -6,6 +6,6 @@ export const Cubes: FC = () => {
   const cubes = useStore((state: StoreState) => state.cubes);
 
   return cubes.map(({ key, position, texture }) => (
-    <Cube key={key} position={position} texture={texture} />
+    <Cube key={key} position={position} texture={texture} id={key} />
   ));
 };
