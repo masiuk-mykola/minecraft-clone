@@ -29,7 +29,7 @@ export const TextureSelector: FC = () => {
   useEffect(() => {
     const textures = { dirt, grass, glass, wood, log };
     // eslint-disable-next-line @typescript-eslint/no-unused-vars
-    const selected = Object.entries(textures).find(([k, v]) => v);
+    const selected = Object.entries(textures).find(([_, v]) => v);
 
     if (selected) setTexture(selected[0] as Texture);
   }, [dirt, grass, glass, wood, log, setTexture]);
