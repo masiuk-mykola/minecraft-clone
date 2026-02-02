@@ -19,6 +19,7 @@ export const Menu: FC = () => {
           </li>
         ))}
       </ul>
+      <p>Alt + Click to remove block</p>
       <div>
         <button onClick={saveWorld}>Save</button>
         <button onClick={resetWorld}>Reset</button>
