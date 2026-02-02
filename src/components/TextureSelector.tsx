@@ -1,23 +1,9 @@
 import { useEffect, useState, type FC } from 'react';
 import { useStore } from '../hooks/useStore';
 import { useKeyboard, type Texture } from '../hooks/useKeyboard';
-import {
-  dirtImg,
-  glassImg,
-  grassImg,
-  logImg,
-  woodImg
-} from '../assets/images/images';
+import { images } from '../assets/images/images';
 
 const VISIBILITY_TIMEOUT = 500;
-
-const images = {
-  dirt: dirtImg,
-  grass: grassImg,
-  glass: glassImg,
-  wood: woodImg,
-  log: logImg
-};
 
 export const TextureSelector: FC = () => {
   const [visible, setVisible] = useState(false);
